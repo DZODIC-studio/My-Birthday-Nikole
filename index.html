@@ -1,1 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cumpleaños Nikole</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .pantalla {
+            min-height: 100vh;
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            position: relative;
+            background: radial-gradient(ellipse at top, #1a1a1a 0%, #0a0a0a 70%);
+            overflow: hidden;
+        }
+
+        .pantalla.activa {
+            display: flex;
+            animation: aparecer 0.8s ease;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estrellas de fondo */
+        .estrella {
+            position: absolute;
+            color: #d4af37;
+            opacity: 0.6;
+            font-size: 12px;
+            animation: brillar 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes brillar {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.3); }
+        }
+
+        /* ===== SLIDE 1 ===== */
+        .texto-arriba {
+            font-size: 15px;
+            letter-spacing: 2px;
+            color: #d4af37;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .titulo-fiesta {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .nombre-principal {
+            font-family: 'Great Vibes', cursive;
+            font-size: 62px;
+            color: #d4af37;
+            margin: 10px 0 25px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            animation: zoomNombre 2.8s ease-in-out infinite;
+        }
+
+        @keyframes zoomNombre {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .foto-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            overflow: hidden;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            animation: baileFoto 3.2s ease-in-out infinite;
+        }
+
+        .foto-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes baileFoto {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(-2deg); }
+            75% { transform: scale(1.05) rotate(2deg); }
+        }
+
+        .frase-portada {
+            font-size: 15px;
+            color: #cccccc;
+            max-width: 300px;
+            line-height: 1.5;
+            margin-bottom: 35px;
+        }
+
+        .boton {
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            color: #0a0a0a;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .boton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* ===== SLIDE 2 ===== */
+        .texto-secundario {
+            font-size: 14px;
+            color: #d4af37;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .foto-slide2 {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .foto-slide2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nombre-slide2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .frase-importante {
+            font-size: 14.5px;
+            color: #dddddd;
+            max-width: 320px;
+            line-height: 1.55;
+            margin-bottom: 18px;
+        }
+
+        .fecha-hora-box {
+            margin: 25px 0;
+        }
+
+        .fecha {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            animation: zoomFecha 2.5s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .hora {
+            font-size: 32px;
+            color: #d4af37;
+            font-weight: 700;
+            animation: zoomFecha 2.5s ease-in-out infinite 0.4s;
+        }
+
+        @keyframes zoomFecha {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+
+        .prohibido {
+            font-size: 13px;
+            color: #d4af37;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* ===== SLIDE 3 ===== */
+        .titulo-cuenta {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .contador {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .tiempo {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 14px 12px;
+            border-radius: 14px;
+            min-width: 70px;
+        }
+
+        .numero {
+            display: block;
+            font-size: 26px;
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        .texto-tiempo {
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .frase-destino {
+            font-size: 14.5px;
+            color: #cccccc;
+            max-width: 320px;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+
+        .ubicacion {
+            font-size: 15px;
+            color: #ffffff;
+            margin: 10px 0 20px;
+            line-height: 1.5;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 10px;
+        }
+
+        .boton-secundario {
+            text-decoration: none;
+            background: linear-gradient(135deg, #d4af37, #b8962e);
+            color: #0a0a0a;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, #25D366, #1da851);
+            color: white;
+        }
+
+        .flecha-atras {
+            margin-top: 30px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: #d4af37;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .nombre-principal { font-size: 52px; }
+            .nombre-slide2 { font-size: 42px; }
+            .foto-container { width: 170px; height: 170px; }
+            .foto-slide2 { width: 140px; height: 140px; }
+            .titulo-fiesta { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===================== SLIDE 1 - PORTADA ===================== -->
+<section id="pantalla1" class="pantalla activa">
+    <!-- Estrellas -->
+    <div class="estrella" style="top:8%; left:10%;">✦</div>
+    <div class="estrella" style="top:15%; right:12%; animation-delay:0.5s;">✦</div>
+    <div class="estrella" style="top:25%; left:6%; animation-delay:1s;">✦</div>
+    <div class="estrella" style="top:40%; right:8%; animation-delay:1.5s;">✦</div>
+    <div class="estrella" style="top:60%; left:12%; animation-delay:0.8s;">✦</div>
+    <div class="estrella" style="top:75%; right:15%; animation-delay:1.2s;">✦</div>
+
+    <p class="texto-arriba">Estás invitad@ a esta</p>
+    <h1 class="titulo-fiesta">la super fiesta de<br>Cumpleaños de</h1>
+    
+    <div class="nombre-principal">Nikole</div>
+
+    <div class="foto-container">
+        <img src="images/fotonikole.png" alt="Nikole">
+    </div>
+
+    <p class="frase-portada">
+        La ocasión es especial, la noche promete… ¿te unes?
+    </p>
+
+    <button class="boton" onclick="mostrarPantalla(2)">ABRIR INVITACIÓN</button>
+</section>
+
+<!-- ===================== SLIDE 2 ===================== -->
+<section id="pantalla2" class="pantalla">
+    <div class="estrella" style="top:10%; left:8%;">✦</div>
+    <div class="estrella" style="top:20%; right:10%;">✦</div>
+    <div class="estrella" style="top:70%; left:10%;">✦</div>
+    <div class="estrella" style="top:80%; right:12%;">✦</div>
+
+    <p class="texto-secundario">La noche está lista.<br>Ahora conozcamos a su protagonista.</p>
+
+    <div class="foto-slide2">
+        <img src="images/fotonikole.png" alt="Nikole">
+    </div>
+
+    <div class="nombre-slide2">Nikole</div>
+
+    <p class="frase-importante">
+        Ahora viene la parte importante:<br>
+        apunta bien, porque faltar no es una opción.
+    </p>
+
+    <p class="frase-importante" style="margin-bottom: 10px;">
+        Ya sabes quién organiza el desorden…<br>
+        ahora descubre cuándo.
+    </p>
+
+    <div class="fecha-hora-box">
+        <div class="fecha">SÁBADO 26 DE SEPTIEMBRE 2026</div>
+        <div class="hora">6:00 PM</div>
+        <div class="prohibido">“Prohibido decir ‘se me olvidó’”</div>
+    </div>
+
+    <button class="boton" onclick="mostrarPantalla(3)">CONTINUAR →</button>
+    <button class="flecha-atras" onclick="mostrarPantalla(1)">←</button>
+</section>
+
+<!-- ===================== SLIDE 3 ===================== -->
+<section id="pantalla3" class="pantalla">
+    <div class="estrella" style="top:12%; left:9%;">✦</div>
+    <div class="estrella" style="top:25%; right:11%;">✦</div>
+    <div class="estrella" style="top:65%; left:8%;">✦</div>
+    <div class="estrella" style="top:78%; right:10%;">✦</div>
+
+    <p class="titulo-cuenta">Cada segundo nos acerca a una noche para recordar… ✨</p>
+
+    <div class="contador">
+        <div class="tiempo">
+            <span id="dias" class="numero">0</span>
+            <span class="texto-tiempo">DÍAS</span>
+        </div>
+        <div class="tiempo">
+            <span id="horas" class="numero">0</span>
+            <span class="texto-tiempo">HORAS</span>
+        </div>
+        <div class="tiempo">
+            <span id="minutos" class="numero">0</span>
+            <span class="texto-tiempo">MIN</span>
+        </div>
+        <div class="tiempo">
+            <span id="segundos" class="numero">0</span>
+            <span class="texto-tiempo">SEG</span>
+        </div>
+    </div>
+
+    <p class="frase-destino">
+        Porque hasta las mejores fiestas necesitan un destino… 📍
+    </p>
+
+    <p class="ubicacion" id="direccion">
+        <!-- Aquí pondremos la dirección completa cuando me la pases -->
+        Ubicación de la fiesta
+    </p>
+
+    <div class="botones">
+        <a class="boton-secundario" href="https://maps.app.goo.gl/KvcwGXywnEuhjrWy8" target="_blank">
+            📍 VER UBICACIÓN
+        </a>
+
+        <a class="boton-secundario whatsapp" 
+           href="https://wa.me/51930986268?text=%C2%A1Hola!%20%F0%9F%A5%82%20Confirmo%20oficialmente%20mi%20asistencia%20a%20la%20celebraci%C3%B3n%20%F0%9F%8E%89%E2%9C%A8%0APrometo%20llegar%20con%20buena%20actitud%2C%20ganas%20de%20celebrar%20y%2C%20sobre%20todo%2C%20%C2%A1sin%20perderme%20la%20fiesta!%20%F0%9F%98%8C%F0%9F%AA%A9%0AAtte%3A%20"
+           target="_blank">
+            💬 CONFIRMAR ASISTENCIA
+        </a>
+    </div>
+
+    <p class="frase-destino" style="margin-top: 25px;">
+        La fiesta te espera… ¿nos confirmas tu asistencia?
+    </p>
+
+    <button class="flecha-atras" onclick="mostrarPantalla(2)">←</button>
+</section>
+
+<audio id="musica" loop>
+    <source src="images/musicaurbana.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    function mostrarPantalla(numero) {
+        document.querySelectorAll(".pantalla").forEach(p => p.classList.remove("activa"));
+        document.getElementById("pantalla" + numero).classList.add("activa");
+        window.scrollTo(0, 0);
+
+        const audio = document.getElementById("musica");
+        if (numero === 2 || numero === 3) {
+            audio.play().catch(() => {});
+        }
+    }
+
+    // Cuenta regresiva - 26 de septiembre 2026 a las 18:00
+    const fechaEvento = new Date("September 26, 2026 18:00:00").getTime();
+
+    setInterval(function() {
+        const ahora = new Date().getTime();
+        const diferencia = fechaEvento - ahora;
+
+        if (diferencia <= 0) {
+            ["dias","horas","minutos","segundos"].forEach(id => {
+                document.getElementById(id).innerText = "0";
+            });
+            return;
+        }
+
+        document.getElementById("dias").innerText = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        document.getElementById("horas").innerText = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutos").innerText = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("segundos").innerText = Math.floor((diferencia % (1000 * 60)) / 1000);
+    }, 1000);
+</script>
+</body>
+</html>
