@@ -30,9 +30,8 @@
             padding: 40px 24px 80px;
             position: relative;
             background: 
-                radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at top, #1a1a1a 0%, #0a0a0a 70%);
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+                url('photo/fondo.png') center/cover no-repeat;
             overflow: hidden;
         }
 
@@ -122,17 +121,18 @@
             font-size: 58px;
             color: #d4af37;
             opacity: 0;
-            transform: translateY(20px) scale(0.8);
-            animation: aparecerLetra 0.5s forwards, baileLetra 1.8s ease-in-out infinite;
+            transform: translateY(25px) scale(0.7);
+            animation: aparecerLetra 0.6s forwards, baileLetra 1.8s ease-in-out infinite;
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.55);
         }
 
-        .letra-nikole:nth-child(1) { animation-delay: 0.1s, 0.1s; }
-        .letra-nikole:nth-child(2) { animation-delay: 0.25s, 0.25s; }
-        .letra-nikole:nth-child(3) { animation-delay: 0.4s, 0.4s; }
-        .letra-nikole:nth-child(4) { animation-delay: 0.55s, 0.55s; }
-        .letra-nikole:nth-child(5) { animation-delay: 0.7s, 0.7s; }
-        .letra-nikole:nth-child(6) { animation-delay: 0.85s, 0.85s; }
+        /* Delay más largo entre letras */
+        .letra-nikole:nth-child(1) { animation-delay: 0.3s, 0.3s; }
+        .letra-nikole:nth-child(2) { animation-delay: 0.7s, 0.7s; }
+        .letra-nikole:nth-child(3) { animation-delay: 1.1s, 1.1s; }
+        .letra-nikole:nth-child(4) { animation-delay: 1.5s, 1.5s; }
+        .letra-nikole:nth-child(5) { animation-delay: 1.9s, 1.9s; }
+        .letra-nikole:nth-child(6) { animation-delay: 2.3s, 2.3s; }
 
         @keyframes aparecerLetra {
             to { opacity: 1; transform: translateY(0) scale(1); }
@@ -211,18 +211,28 @@
         }
 
         .nombre-slide2 {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 18px;
+        }
+
+        .letra-slide2 {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 48px;
             color: #d4af37;
-            margin-bottom: 18px;
-            letter-spacing: 3px;
-            animation: baileUrbano 2s ease-in-out infinite;
+            opacity: 0;
+            transform: translateY(20px) scale(0.7);
+            animation: aparecerLetra 0.6s forwards, baileLetra 1.9s ease-in-out infinite;
+            letter-spacing: 2px;
         }
 
-        @keyframes baileUrbano {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.07); }
-        }
+        .letra-slide2:nth-child(1) { animation-delay: 0.4s, 0.4s; }
+        .letra-slide2:nth-child(2) { animation-delay: 0.8s, 0.8s; }
+        .letra-slide2:nth-child(3) { animation-delay: 1.2s, 1.2s; }
+        .letra-slide2:nth-child(4) { animation-delay: 1.6s, 1.6s; }
+        .letra-slide2:nth-child(5) { animation-delay: 2.0s, 2.0s; }
+        .letra-slide2:nth-child(6) { animation-delay: 2.4s, 2.4s; }
 
         .frase-importante {
             font-size: 14.5px;
@@ -283,7 +293,7 @@
         }
 
         .tiempo {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.08);
             border: 1px solid rgba(212, 175, 55, 0.35);
             padding: 12px 10px;
             border-radius: 12px;
@@ -355,7 +365,7 @@
 
         @media (max-width: 480px) {
             .nombre-principal .letra-nikole { font-size: 46px; }
-            .nombre-slide2 { font-size: 40px; }
+            .letra-slide2 { font-size: 40px; }
             .foto-container { width: 160px; height: 160px; }
             .foto-slide2 { width: 130px; height: 130px; }
             .texto-riesgo { font-size: 22px; }
@@ -405,7 +415,14 @@
         <img src="photo/fotonikole.png" alt="Nikole">
     </div>
 
-    <div class="nombre-slide2">NIKOLE</div>
+    <div class="nombre-slide2">
+        <span class="letra-slide2">N</span>
+        <span class="letra-slide2">I</span>
+        <span class="letra-slide2">K</span>
+        <span class="letra-slide2">O</span>
+        <span class="letra-slide2">L</span>
+        <span class="letra-slide2">E</span>
+    </div>
 
     <p class="frase-importante">
         Ahora viene la parte importante:<br>
@@ -492,16 +509,14 @@
         document.getElementById("pantalla" + numero).classList.add("activa");
         window.scrollTo(0, 0);
 
-        // Control de música
         if (numero === 2 || numero === 3) {
             audio.play().catch(() => {});
         } else {
             audio.pause();
-            audio.currentTime = 0; // se reinicia cuando vuelves al inicio
+            audio.currentTime = 0;
         }
     }
 
-    // Cuenta regresiva
     const fechaEvento = new Date("September 26, 2026 18:00:00").getTime();
 
     setInterval(function() {
