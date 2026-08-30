@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cumpleaños Nikole</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;700;800&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -35,6 +35,401 @@
 
         .pantalla.activa {
             display: flex;
+            animation: aparecer 0.7s ease;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== GLOBOS ===== */
+        .globo {
+            position: absolute;
+            font-size: 42px;
+            z-index: 1;
+            opacity: 0.9;
+            animation: flotarGlobo 5s ease-in-out infinite;
+        }
+
+        .globo1 { top: 40px; left: 15px; animation-delay: 0s; }
+        .globo2 { top: 60px; right: 18px; animation-delay: 1.2s; font-size: 38px; }
+        .globo3 { bottom: 80px; left: 20px; animation-delay: 0.6s; font-size: 36px; }
+        .globo4 { bottom: 100px; right: 15px; animation-delay: 1.8s; font-size: 40px; }
+
+        @keyframes flotarGlobo {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-18px) rotate(5deg); }
+        }
+
+        /* ===== SLIDE 1 ===== */
+        .texto-arriba {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #d4af37;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .texto-riesgo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .texto-fiesta {
+            font-size: 15px;
+            color: #cccccc;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        /* Foto con efecto prende y apaga */
+        .foto-container {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.45);
+            animation: prendeApaga 2s ease-in-out infinite;
+        }
+
+        .foto-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes prendeApaga {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(0.96); }
+        }
+
+        /* Nombre letra por letra */
+        .nombre-principal {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 28px;
+        }
+
+        .letra-nikole {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 52px;
+            color: #d4af37;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            animation: aparecerLetra 0.5s forwards, baileLetra 1.8s ease-in-out infinite;
+            text-shadow: 0 0 18px rgba(212, 175, 55, 0.5);
+        }
+
+        .letra-nikole:nth-child(1) { animation-delay: 0.1s, 0.1s; }
+        .letra-nikole:nth-child(2) { animation-delay: 0.25s, 0.25s; }
+        .letra-nikole:nth-child(3) { animation-delay: 0.4s, 0.4s; }
+        .letra-nikole:nth-child(4) { animation-delay: 0.55s, 0.55s; }
+        .letra-nikole:nth-child(5) { animation-delay: 0.7s, 0.7s; }
+        .letra-nikole:nth-child(6) { animation-delay: 0.85s, 0.85s; }
+
+        @keyframes aparecerLetra {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes baileLetra {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.08); }
+        }
+
+        .frase-portada {
+            font-size: 15px;
+            color: #dddddd;
+            max-width: 300px;
+            line-height: 1.5;
+            margin-bottom: 35px;
+        }
+
+        .boton {
+            background: linear-gradient(135deg, #d4af37, #c9a227);
+            color: #0a0a0a;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            animation: pulsoBoton 2s ease-in-out infinite;
+        }
+
+        @keyframes pulsoBoton {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .boton:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.55);
+        }
+
+        /* ===== SLIDE 2 ===== */
+        .texto-secundario {
+            font-size: 14px;
+            color: #d4af37;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .foto-slide2 {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            overflow: hidden;
+            margin: 0 auto 12px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+            animation: baileFoto 2.2s ease-in-out infinite;
+        }
+
+        .foto-slide2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes baileFoto {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.07) rotate(-3deg); }
+            70% { transform: scale(1.07) rotate(3deg); }
+        }
+
+        .nombre-slide2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 18px;
+            letter-spacing: 3px;
+            animation: baileUrbano 1.9s ease-in-out infinite;
+        }
+
+        @keyframes baileUrbano {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .frase-importante {
+            font-size: 14.5px;
+            color: #dddddd;
+            max-width: 320px;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+
+        .fecha-hora-box {
+            margin: 22px 0;
+        }
+
+        .fecha {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            animation: zoomFuerte 1.5s ease-in-out infinite;
+        }
+
+        .hora {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 38px;
+            color: #d4af37;
+            animation: zoomFuerte 1.5s ease-in-out infinite 0.25s;
+        }
+
+        @keyframes zoomFuerte {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .prohibido {
+            font-size: 13px;
+            color: #d4af37;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* ===== SLIDE 3 ===== */
+        .titulo-cuenta {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .contador {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .tiempo {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            padding: 12px 10px;
+            border-radius: 12px;
+            min-width: 68px;
+        }
+
+        .numero {
+            display: block;
+            font-size: 26px;
+            color: #d4af37;
+            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .texto-tiempo {
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .frase-destino {
+            font-size: 14.5px;
+            color: #cccccc;
+            max-width: 320px;
+            line-height: 1.5;
+            margin: 14px 0;
+        }
+
+        .ubicacion {
+            font-size: 15px;
+            color: #ffffff;
+            margin: 8px 0 18px;
+            line-height: 1.5;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 8px;
+        }
+
+        .boton-secundario {
+            text-decoration: none;
+            background: linear-gradient(135deg, #d4af37, #c9a227);
+            color: #0a0a0a;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, #25D366, #1da851);
+            color: white;
+        }
+
+        .flecha-atras {
+            margin-top: 28px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: #d4af37;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .nombre-principal .letra-nikole { font-size: 42px; }
+            .nombre-slide2 { font-size: 40px; }
+            .foto-container { width: 160px; height: 160px; }
+            .foto-slide2 { width: 130px; height: 130px; }
+            .texto-riesgo { font-size: 22px; }
+            .globo { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===================== SLIDE 1 - PORTADA ===================== -->
+<section id="pantalla1" class="pantalla activa">
+    <!-- Globos -->
+    <div class="globo globo1">🎈</div>
+    <div class="globo globo2">🎈</div>
+    <div class="globo globo3">🎈</div>
+    <div class="globo globo4">🎈</div>
+
+    <p class="texto-arriba">Estas invitad@</p>
+    <div class="texto-riesgo">A UN EVENTO DE ALTO RIESGO</div>
+    <p class="texto-fiesta">Mi fiesta de cumpleaños</p>
+
+    <!-- Foto primero -->
+    <div class="foto-container">
+        <img src="images/fotonikole.png" alt="Nikole">
+    </div>
+
+    <!-- Nombre letra por letra -->
+    <div class="nombre-principal">
+        <span class="letra-nikole">N</span>
+        <span class="letra-nikole">I</span>
+        <span class="letra-nikole">K</span>
+        <span class="letra-nikole">O</span>
+        <span class="letra-nikole">L</span>
+        <span class="letra-nikole">E</span>
+    </div>
+
+    <p class="frase-portada">
+        La ocasión es especial, la noche promete… ¿te unes?
+    </p>
+
+    <button class="boton" onclick="mostrarPantalla(2)">ABRIR BAJO TU RIESGO</button>
+</section>
+
+<!-- ===================== SLIDE 2 ===================== -->
+<section id="pantalla2" class="pantalla">
+    <div class="globo globo1">🎈</div>
+    <div class="globo globo2">🎈</div>
+
+    <p class="texto-secundario">La noche está lista.<br>Ahora conozcamos a su protagonista.</p>
+
+    <div class="foto-slide2">
+        <img src="images/fotonikole.png" alt="Nikole">
+    </div>
+
+    <div class="nombre-slide2">NIKOLE</div>
+
+    <p class="frase-importante">
+        Ahora viene la parte importante:<br>
+        apunta bien, porque faltar no es una opción.
+    </p>
+
+    <p class="frase-importante" style="margin-bottom: 8px;">
+        Ya sabes quién organiza el desorden…<br>
+        ahora descubre cuándo.
+    </p>
+
+    <div class="fecha-hora-box">
+        <div class="fecha">SÁBADO 26 DE SEPTIEMBRE 2026</div>
+        <div class="hora">6:00 PM</div>
+        <div class="prohibido">“Prohibido decir ‘se me olvidó’”</div>
+    </div>
+
+    <button class="boton" onclick="mostrarPantalla(            display: flex;
             animation: aparecer 0.8s ease;
         }
 
