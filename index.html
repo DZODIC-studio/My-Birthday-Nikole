@@ -27,29 +27,499 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px 24px 80px; /* más espacio abajo para globos */
+            padding: 40px 24px 80px;
             position: relative;
-            background: radial-gradient(ellipse at top, #1a1a1a 0%, #0a0a0a 70%);
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at top, #1a1a1a 0%, #0a0a0a 70%);
             overflow: hidden;
         }
 
         .pantalla.activa {
             display: flex;
-            animation: aparecer 0.7s ease;
+            animation: entradaSuave 0.9s ease;
         }
 
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(25px); }
+        @keyframes entradaSuave {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Espacios reservados para globos (tú los llenarás después) */
+        /* Espacios para globos */
         .espacio-globo {
             position: absolute;
             width: 80px;
             height: 80px;
             z-index: 1;
         }
+        .globo-izq-abajo { bottom: 20px; left: 15px; }
+        .globo-der-abajo { bottom: 20px; right: 15px; }
+        .globo-arriba {
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+        }
 
-        .globo-izq-abajo {
-            bottom
+        /* ===== SLIDE 1 ===== */
+        .texto-arriba {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #d4af37;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .texto-riesgo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .texto-fiesta {
+            font-size: 15px;
+            color: #cccccc;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .foto-container {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.45);
+            animation: prendeApagaSuave 3.5s ease-in-out infinite;
+        }
+
+        .foto-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes prendeApagaSuave {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.55; transform: scale(0.98); }
+        }
+
+        .nombre-principal {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 28px;
+        }
+
+        .letra-nikole {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 58px;
+            color: #d4af37;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            animation: aparecerLetra 0.5s forwards, baileLetra 1.8s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.55);
+        }
+
+        .letra-nikole:nth-child(1) { animation-delay: 0.1s, 0.1s; }
+        .letra-nikole:nth-child(2) { animation-delay: 0.25s, 0.25s; }
+        .letra-nikole:nth-child(3) { animation-delay: 0.4s, 0.4s; }
+        .letra-nikole:nth-child(4) { animation-delay: 0.55s, 0.55s; }
+        .letra-nikole:nth-child(5) { animation-delay: 0.7s, 0.7s; }
+        .letra-nikole:nth-child(6) { animation-delay: 0.85s, 0.85s; }
+
+        @keyframes aparecerLetra {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes baileLetra {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.08); }
+        }
+
+        .frase-portada {
+            font-size: 15px;
+            color: #dddddd;
+            max-width: 300px;
+            line-height: 1.5;
+            margin-bottom: 35px;
+        }
+
+        .boton {
+            background: linear-gradient(135deg, #d4af37, #c9a227);
+            color: #0a0a0a;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            animation: pulsoBoton 2s ease-in-out infinite;
+        }
+
+        @keyframes pulsoBoton {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .boton:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.55);
+        }
+
+        /* ===== SLIDE 2 ===== */
+        .texto-secundario {
+            font-size: 14px;
+            color: #d4af37;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .foto-slide2 {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            overflow: hidden;
+            margin: 0 auto 12px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+            animation: baileFoto 2.4s ease-in-out infinite;
+        }
+
+        .foto-slide2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes baileFoto {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.06) rotate(-2.5deg); }
+            70% { transform: scale(1.06) rotate(2.5deg); }
+        }
+
+        .nombre-slide2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 18px;
+            letter-spacing: 3px;
+            animation: baileUrbano 2s ease-in-out infinite;
+        }
+
+        @keyframes baileUrbano {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.07); }
+        }
+
+        .frase-importante {
+            font-size: 14.5px;
+            color: #dddddd;
+            max-width: 320px;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+
+        .fecha-hora-box {
+            margin: 22px 0;
+        }
+
+        .fecha {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            animation: zoomFuerte 1.7s ease-in-out infinite;
+        }
+
+        .hora {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 38px;
+            color: #d4af37;
+            animation: zoomFuerte 1.7s ease-in-out infinite 0.25s;
+        }
+
+        @keyframes zoomFuerte {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .prohibido {
+            font-size: 13px;
+            color: #d4af37;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* ===== SLIDE 3 ===== */
+        .titulo-cuenta {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .contador {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .tiempo {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            padding: 12px 10px;
+            border-radius: 12px;
+            min-width: 68px;
+        }
+
+        .numero {
+            display: block;
+            font-size: 26px;
+            color: #d4af37;
+            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .texto-tiempo {
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .frase-destino {
+            font-size: 14.5px;
+            color: #cccccc;
+            max-width: 320px;
+            line-height: 1.5;
+            margin: 14px 0;
+        }
+
+        .ubicacion {
+            font-size: 15px;
+            color: #ffffff;
+            margin: 8px 0 18px;
+            line-height: 1.5;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 8px;
+        }
+
+        .boton-secundario {
+            text-decoration: none;
+            background: linear-gradient(135deg, #d4af37, #c9a227);
+            color: #0a0a0a;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, #1faa5a, #168f4a);
+            color: white;
+        }
+
+        .flecha-atras {
+            margin-top: 28px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: #d4af37;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .nombre-principal .letra-nikole { font-size: 46px; }
+            .nombre-slide2 { font-size: 40px; }
+            .foto-container { width: 160px; height: 160px; }
+            .foto-slide2 { width: 130px; height: 130px; }
+            .texto-riesgo { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===================== SLIDE 1 ===================== -->
+<section id="pantalla1" class="pantalla activa">
+    <div class="espacio-globo globo-arriba"></div>
+    <div class="espacio-globo globo-izq-abajo"></div>
+    <div class="espacio-globo globo-der-abajo"></div>
+
+    <p class="texto-arriba">Estas invitad@</p>
+    <div class="texto-riesgo">A UN EVENTO DE ALTO RIESGO</div>
+    <p class="texto-fiesta">Mi fiesta de cumpleaños</p>
+
+    <div class="foto-container">
+        <img src="images/fotonikole.png" alt="Nikole">
+    </div>
+
+    <div class="nombre-principal">
+        <span class="letra-nikole">N</span>
+        <span class="letra-nikole">I</span>
+        <span class="letra-nikole">K</span>
+        <span class="letra-nikole">O</span>
+        <span class="letra-nikole">L</span>
+        <span class="letra-nikole">E</span>
+    </div>
+
+    <p class="frase-portada">
+        La ocasión es especial, la noche promete… ¿te unes?
+    </p>
+
+    <button class="boton" onclick="mostrarPantalla(2)">ABRIR BAJO TU RIESGO</button>
+</section>
+
+<!-- ===================== SLIDE 2 ===================== -->
+<section id="pantalla2" class="pantalla">
+    <div class="espacio-globo globo-izq-abajo"></div>
+    <div class="espacio-globo globo-der-abajo"></div>
+
+    <p class="texto-secundario">La noche está lista.<br>Ahora conozcamos a su protagonista.</p>
+
+    <div class="foto-slide2">
+        <img src="images/fotonikole.png" alt="Nikole">
+    </div>
+
+    <div class="nombre-slide2">NIKOLE</div>
+
+    <p class="frase-importante">
+        Ahora viene la parte importante:<br>
+        apunta bien, porque faltar no es una opción.
+    </p>
+
+    <p class="frase-importante" style="margin-bottom: 8px;">
+        Ya sabes quién organiza el desorden…<br>
+        ahora descubre cuándo.
+    </p>
+
+    <div class="fecha-hora-box">
+        <div class="fecha">SÁBADO 26 DE SEPTIEMBRE 2026</div>
+        <div class="hora">6:00 PM</div>
+        <div class="prohibido">“Prohibido decir ‘se me olvidó’”</div>
+    </div>
+
+    <button class="boton" onclick="mostrarPantalla(3)">CONTINUAR →</button>
+    <button class="flecha-atras" onclick="mostrarPantalla(1)">←</button>
+</section>
+
+<!-- ===================== SLIDE 3 ===================== -->
+<section id="pantalla3" class="pantalla">
+    <div class="espacio-globo globo-izq-abajo"></div>
+    <div class="espacio-globo globo-der-abajo"></div>
+
+    <p class="titulo-cuenta">Cada segundo nos acerca a una noche para recordar… ✨</p>
+
+    <div class="contador">
+        <div class="tiempo">
+            <span id="dias" class="numero">0</span>
+            <span class="texto-tiempo">DÍAS</span>
+        </div>
+        <div class="tiempo">
+            <span id="horas" class="numero">0</span>
+            <span class="texto-tiempo">HORAS</span>
+        </div>
+        <div class="tiempo">
+            <span id="minutos" class="numero">0</span>
+            <span class="texto-tiempo">MIN</span>
+        </div>
+        <div class="tiempo">
+            <span id="segundos" class="numero">0</span>
+            <span class="texto-tiempo">SEG</span>
+        </div>
+    </div>
+
+    <p class="frase-destino">
+        Porque hasta las mejores fiestas necesitan un destino… 📍
+    </p>
+
+    <p class="ubicacion" id="direccion">
+        Ubicación de la fiesta
+    </p>
+
+    <div class="botones">
+        <a class="boton-secundario" href="https://maps.app.goo.gl/KvcwGXywnEuhjrWy8" target="_blank">
+            VER UBICACIÓN
+        </a>
+
+        <a class="boton-secundario whatsapp" 
+           href="https://wa.me/51930986268?text=%C2%A1Hola!%20%F0%9F%A5%82%20Confirmo%20oficialmente%20mi%20asistencia%20a%20la%20celebraci%C3%B3n%20%F0%9F%8E%89%E2%9C%A8%0APrometo%20llegar%20con%20buena%20actitud%2C%20ganas%20de%20celebrar%20y%2C%20sobre%20todo%2C%20%C2%A1sin%20perderme%20la%20fiesta!%20%F0%9F%98%8C%F0%9F%AA%A9%0AAtte%3A%20"
+           target="_blank">
+            CONFIRMAR ASISTENCIA
+        </a>
+    </div>
+
+    <p class="frase-destino" style="margin-top: 22px;">
+        La fiesta te espera… ¿nos confirmas tu asistencia?
+    </p>
+
+    <button class="flecha-atras" onclick="mostrarPantalla(2)">←</button>
+</section>
+
+<audio id="musica" loop>
+    <source src="images/musicaurbana.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const audio = document.getElementById("musica");
+
+    function mostrarPantalla(numero) {
+        document.querySelectorAll(".pantalla").forEach(p => p.classList.remove("activa"));
+        document.getElementById("pantalla" + numero).classList.add("activa");
+        window.scrollTo(0, 0);
+
+        // Control de música
+        if (numero === 2 || numero === 3) {
+            audio.play().catch(() => {});
+        } else {
+            audio.pause();
+            audio.currentTime = 0; // se reinicia cuando vuelves al inicio
+        }
+    }
+
+    // Cuenta regresiva
+    const fechaEvento = new Date("September 26, 2026 18:00:00").getTime();
+
+    setInterval(function() {
+        const ahora = new Date().getTime();
+        const diferencia = fechaEvento - ahora;
+
+        if (diferencia <= 0) {
+            ["dias","horas","minutos","segundos"].forEach(id => {
+                document.getElementById(id).innerText = "0";
+            });
+            return;
+        }
+
+        document.getElementById("dias").innerText = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        document.getElementById("horas").innerText = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutos").innerText = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("segundos").innerText = Math.floor((diferencia % (1000 * 60)) / 1000);
+    }, 1000);
+</script>
+</body>
+</html>
