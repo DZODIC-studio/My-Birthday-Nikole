@@ -35,6 +35,13 @@
             overflow: hidden;
         }
 
+        /* Fondo especial solo para el slide 3 */
+        #pantalla3 {
+            background: 
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+                url('photo/fondo3.jpeg') center/cover no-repeat !important;
+        }
+
         .pantalla.activa {
             display: flex;
             animation: entradaSuave 0.9s ease;
@@ -458,7 +465,7 @@
     <div class="birthday">Birthday!</div>
 
     <div class="foto-container">
-        <img src="photo/fotoniki.jpeg" alt="Nikole">
+        <img src="photo/fotoniki.png" alt="Nikole">
     </div>
 
     <div class="nombre-principal">
@@ -490,7 +497,7 @@
     <p class="texto-secundario">La noche está lista.<br>Ahora conozcamos a su protagonista.</p>
 
     <div class="foto-slide2">
-        <img src="photo/fotoniki.jpeg" alt="Nikole">
+        <img src="photo/fotoniki.png" alt="Nikole">
     </div>
 
     <div class="nombre-slide2">
@@ -523,13 +530,6 @@
 </section>
 
 <!-- ===================== SLIDE 3 ===================== -->
-    
-    /* Fondo especial solo para el slide 3 */
-#pantalla3 {
-    background: 
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
-        url('photo/fondo3.jpeg') center/cover no-repeat !important;
-}
 <section id="pantalla3" class="pantalla">
     <div class="estrella" style="top:12%; left:9%;">✦</div>
     <div class="estrella" style="top:28%; right:11%; animation-delay:0.6s;">✦</div>
